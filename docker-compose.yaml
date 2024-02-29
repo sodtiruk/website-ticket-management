@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:lastest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ticket-nipa
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - .
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - mynetwork
+
+  server:
+    build: ./server/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db 
+      DB_USER: root 
+      DB_PASSWORD: root
+      DB_DATABASE: ticket-nipa
+    networks:
+      - mynetwork
+  client:
+    build: ./client/
+    ports:
+      - "8080:8080"
+    environment:
+      - <<-----
+    networks:
+      - mynetwork 
+networks:
+  mynetwork:
+    driver: bridge
+    ...

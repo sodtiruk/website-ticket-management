@@ -125,10 +125,6 @@ app.get("/tickets/filter/:status", (req, res) => {
 
 
 
-
-
-
-
 app.listen(port, () => {
     console.log(`server running on port ${port}`);
 });
