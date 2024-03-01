@@ -88,11 +88,13 @@ app.put("/ticket", (req, res) => {
     let title = req.body.title;
     let description = req.body.description;
     let contact = req.body.contact;
+    let status = req.body.status;    
+    
 
     if (!title || !description || !contact){
         return res.status(400).send({error: true, message: "Please fill in complete information."})
     }else {
-        dbConnection.query("update ticket set title = ?, description = ?, contact = ? where id = ?", [title, description, contact, id], (error, results, fields) => {
+        dbConnection.query("update ticket set title = ?, description = ?, contact = ?, status = ? where id = ?", [title, description, contact, status, id], (error, results, fields) => {
             if (error) throw error;
 
             let message = ""
