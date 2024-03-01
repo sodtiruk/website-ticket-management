@@ -10,7 +10,7 @@ export default function Drop() {
                 filter
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Pending</Dropdown.Item>
+                <Dropdown.Item href="#/action-1" onClick={ () => { console.log("hello world") }}>Pending</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Accepted</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Resolved</Dropdown.Item>
                 <Dropdown.Item href="#/action-4">Resolved</Dropdown.Item>

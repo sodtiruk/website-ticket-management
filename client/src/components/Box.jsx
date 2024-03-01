@@ -1,26 +1,45 @@
 import "bootstrap/dist/css/bootstrap.min.css" 
-import React from "react"; 
+import React, { useEffect, useState } from "react"; 
+import axios from "axios" 
 
 export default function Box() {
-    let data = [
-        {
-            title: "Train",
-            description: "Bangkok to Nakhonpathom",
-            contact: "sodtiruk22@gmail.com",
-            status: "pending"  
-        },
-        {
-            title: "Train",
-            description: "Bangkok to Nakhonpathom",
-            contact: "sodtiruk22@gmail.com",
-            status: "pending"  
-        }
-    ];
 
-    data.forEach(item => {
-        console.log(item.title, item.description, item.contact, item.status) 
-    });
+    const [tickets, setTickets] = useState([]);
 
+    // const [status, setStatus] = useState("");
+    // const [orderStatus, setOrderStatus] = useState([]);
+    
+    // const [number, setNumber] = useState(0);
+
+    // const addNumber = async () => {
+    //     number += 1;
+    //     console.log("test");
+    // }
+
+    const getTickets = async () => {
+        const response = await axios.get("http://localhost:3000/tickets");
+        setTickets(response.data.data);
+    }
+
+
+    // const status = "pending"
+    // const getOrderStatus = async () => {
+    //     const response = await axios.get(`http://localhost:3000/tickets/filter/${status}`);
+    //     // setOrderStatus(response.data.data)
+    //     setTickets(response.data.data);
+    // }
+
+    useEffect(() => {
+        getTickets();
+    }, [])
+
+    // useEffect(() => {
+    //     getOrderStatus();
+    // }, [])
+
+    console.log(tickets); 
+    // console.log(orderStatus);
+    // console.log(number)
 
     return (
         <>
@@ -28,46 +47,39 @@ export default function Box() {
                 <table className="table table-hover">
                     <thead className="table-primary">
                         <tr>
-                        <th scope="col">id</th>
+                        <th scope="col" onClick={ () => {} }>id</th>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">Status </th>
+                        <th scope="col">Status</th>
                         <th scope="col">Create</th>
                         <th scope="col">Update</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Train</td>
-                        <td>Bangkok to Nakhonpathom</td>
-                        <td>sodtiruk22@gmail.com</td>
-                        <td>pending</td>
-                        <td>pending</td>
-                        <td>pending</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>pending</td>
-                        <td>pending</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        </tr>
+                        {tickets.map(val => (
+                            <tr key={val.id}>
+                            <th scope="row">{val.id}</th>
+                            <td>{val.title}</td>
+                            <td>{val.description}</td>
+                            <td>{val.contact}</td>
+                            <td>{val.status}</td>
+                            <td>{val.create_at}</td>
+                            <td>{val.update_at}</td>
+                            </tr>
+                        ))}
                     </tbody>
 
                     <tfoot className="table-secondary">
                         <tr>
                             <th>Total</th>
-                            <td>footer</td>
-                            <td>footer</td>
-                            <td>footer</td>
-                            <td>footer</td>
-                            <td>footer</td>
-                            <td>footer</td>
+                            <td>{tickets.length}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tfoot>
 
