@@ -1,11 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
 
-export default function From() {
-    return (
+export default function FromUpdate() {
+  return (
         <>
             <form className="container border p-5">
             <div className="mb-2">
-                <h1>Create Ticket</h1>
+                <h1>Update Ticket</h1>
+            </div>
+            <div className="mb-2">
+                <label for="exampleInputPassword1" className="form-label">Id</label>
+                <input type="text" className="form-control" id="exampleInputPassword1" />
             </div>
             <div className="mb-2">
                 <label for="exampleInputEmail1" className="form-label">Title</label>
@@ -23,5 +27,5 @@ export default function From() {
             <button type="submit" className="btn btn-primary">Create</button>
             </form>
         </>
-    )
+  )
 }

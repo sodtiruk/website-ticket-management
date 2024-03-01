@@ -9,10 +9,10 @@ export default function Sidebar() {
       <>
         <Col sm={3} md={2} className="sidebar">
           <Nav className="flex-column align-items-center mt-5">
-            <Nav.Link href="#logo"><Image src="https://www.freeiconspng.com/thumbs/hd-tickets/download-ticket-ticket-free-entertainment-icon-orange-ticket-design-0.png" alt="Your Image" fluid /></Nav.Link>
+            <Nav.Link><Image src="https://www.freeiconspng.com/thumbs/hd-tickets/download-ticket-ticket-free-entertainment-icon-orange-ticket-design-0.png" alt="Your Image" fluid /></Nav.Link>
             <Nav.Link as={Link} to="/">Ticket</Nav.Link>
             <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
-            <Nav.Link href="#services">Services</Nav.Link>
+            <Nav.Link as={Link} to="/update">Update</Nav.Link>
             <Nav.Link href="#contact">Contact</Nav.Link>
           </Nav>
         </Col>
