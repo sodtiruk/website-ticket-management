@@ -3,7 +3,7 @@ import React from "react";
 import Sidebar from "./components/Sidebar.jsx";
 import { Container, Row } from "react-bootstrap";
 import Content from "./components/Content.jsx";
-
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           </Row>
 
         </Container>
+        <Footer />
 
 
     </>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
 import Box from './Box'
-import Dropdown from "./Drop"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
