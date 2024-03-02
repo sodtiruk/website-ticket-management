@@ -125,6 +125,23 @@ app.get("/tickets/filter/:status", (req, res) => {
     })
 });
 
+//sort 
+app.get("/tickets/sort/lastupdate", (req, res) => {
+    // let order = req.params.order;
+    dbConnection.query("select * from ticket order by update_at desc", [], (error, results, fields) => {
+        if (error) throw error;
+
+        let message = "";
+        if (results == undefined || results.length == 0){
+            message = "empthy data.";
+        }else {
+            message = `fetch successfully`;
+        }
+        return res.send({error: false, data: results, message: message})
+    })
+});
+
+
 
 
 app.listen(port, () => {

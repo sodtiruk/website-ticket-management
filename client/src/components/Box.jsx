@@ -1,48 +1,90 @@
 import "bootstrap/dist/css/bootstrap.min.css" 
 import React, { useEffect, useState } from "react"; 
 import axios from "axios" 
+import { Dropdown } from "react-bootstrap";
+
+export function Drop( { functionFilter } ) {
+    return (
+        <>
+            <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{marginRight: 30}}>
+                Filter 
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                <Dropdown.Item onClick={ functionFilter[0] }>All</Dropdown.Item>
+                <Dropdown.Item onClick={ functionFilter[1] }>Pending</Dropdown.Item>
+                <Dropdown.Item onClick={ functionFilter[2] }>Accepted</Dropdown.Item>
+                <Dropdown.Item onClick={ functionFilter[4] }>Resolved</Dropdown.Item>
+                <Dropdown.Item onClick={ functionFilter[3] }>Rejected</Dropdown.Item>
+            </Dropdown.Menu>
+            </Dropdown>
+
+        </>
+    )
+}
+
+export function Sort( { functionSort }) {
+    return (
+        <>
+            <button type="button" className="btn btn-primary" onClick={ functionSort }>Last Update</button> 
+        </>
+    )
+}
+
 
 export default function Box() {
 
     const [tickets, setTickets] = useState([]);
 
-    // const [status, setStatus] = useState("");
-    // const [orderStatus, setOrderStatus] = useState([]);
-    
-    // const [number, setNumber] = useState(0);
-
-    // const addNumber = async () => {
-    //     number += 1;
-    //     console.log("test");
-    // }
+    const [number, setNumber] = useState(0);
 
     const getTickets = async () => {
         const response = await axios.get("http://localhost:3000/tickets");
         setTickets(response.data.data);
     }
 
-
-    // const status = "pending"
-    // const getOrderStatus = async () => {
-    //     const response = await axios.get(`http://localhost:3000/tickets/filter/${status}`);
-    //     // setOrderStatus(response.data.data)
-    //     setTickets(response.data.data);
-    // }
-
     useEffect(() => {
         getTickets();
     }, [])
 
-    // useEffect(() => {
-    //     getOrderStatus();
-    // }, [])
+    // console.log(tickets); 
 
-    console.log(tickets); 
-    // console.log(orderStatus);
-    // console.log(number)
+    const fetchPending = async () => {
+        const response = await axios.get("http://localhost:3000/tickets/filter/pending")
+        setTickets(response.data.data)
+    }
 
+    const fetchAccepted = async () => {
+        const response = await axios.get("http://localhost:3000/tickets/filter/accepted")
+        setTickets(response.data.data)
+    }
+
+    const fetchRejected = async () => {
+        const response = await axios.get("http://localhost:3000/tickets/filter/rejected")
+        setTickets(response.data.data)
+    }
+
+    const fetchResolved = async () => {
+        const response = await axios.get("http://localhost:3000/tickets/filter/resolved")
+        setTickets(response.data.data)
+    }
+
+    const sortUpdate = async () => {
+        const response = await axios.get("http://localhost:3000/tickets/sort/lastupdate")
+        setTickets(response.data.data)
+    }
+
+    const functionFilter = [getTickets, fetchPending, fetchAccepted, fetchRejected, fetchResolved];
+
+
+
+    console.log(number);
     return (
         <>
+            <div className="mb-3 text-end d-flex justify-content-between">
+                <Sort functionSort={ sortUpdate }/> 
+                <Drop functionFilter={functionFilter}/> 
+            </div>
             <div>
                 <table className="table table-hover">
                     <thead className="table-primary">
@@ -65,8 +107,8 @@ export default function Box() {
                             <td>{val.description}</td>
                             <td>{val.contact}</td>
                             <td>{val.status}</td>
-                            <td>{val.create_at}</td>
-                            <td>{val.update_at}</td>
+                            <td>{ `${new Date(val.create_at).toLocaleTimeString()} ${new Date(val.create_at).toDateString()}` }</td>
+                            <td>{ `${new Date(val.update_at).toLocaleTimeString()} ${new Date(val.update_at).toDateString()}` }</td>
                             </tr>
                         ))}
                     </tbody>
