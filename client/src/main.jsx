@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import Ticket from './components/Ticket.jsx'
 import Admin from './components/Admin.jsx'
 import Update from './Update.jsx'
+import Contact from './Contact.jsx'
 
 import { createBrowserRouter, RouterProvider} from "react-router-dom" 
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "update",
     element: <Update /> 
+  },
+  {
+    path: "contact",
+    element: <Contact />
   },
 
 ]);
