@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import React, { useEffect, useState } from "react"; 
 import axios from "axios" 
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export function Drop( { functionFilter } ) {
     return (
@@ -107,8 +108,8 @@ export default function Box() {
                             <td>{val.description}</td>
                             <td>{val.contact}</td>
                             <td>{val.status}</td>
-                            <td>{ `${new Date(val.create_at).toLocaleTimeString()} ${new Date(val.create_at).toDateString()}` }</td>
-                            <td>{ `${new Date(val.update_at).toLocaleTimeString()} ${new Date(val.update_at).toDateString()}` }</td>
+                            <td>{ `${new Date(val.create_at).toLocaleTimeString()} ${new Date(val.create_at).toDateString()}`}</td>
+                            <td>{ `${new Date(val.update_at).toLocaleTimeString()} ${new Date(val.update_at).toDateString()}`}<Link to={`/update/${val.id}`} className="btn btn-warning mx-2">Edit</Link></td>
                             </tr>
                         ))}
                     </tbody>

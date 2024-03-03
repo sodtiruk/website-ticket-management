@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export default function FromUpdate() {
 
-    const [id, setId] = useState(0);
+    const [id, setId] = useState("");
     const [title, setTitle] = useState("");
     const [des, setDes] = useState("");
     const [contact, setContact] = useState("");
@@ -22,6 +23,30 @@ export default function FromUpdate() {
     }
     
     console.log(id, title, des, contact, status);
+    const { getId } = useParams()
+    // console.log(getId)
+
+
+    const getTicketId = async () => {
+        const response = await axios.get(`http://localhost:3000/ticket/${getId}`)
+        console.log(response.data.data);
+        let dataTicket = response.data.data[0]
+        setId(dataTicket.id)
+        setTitle(dataTicket.title)
+        setDes(dataTicket.description)
+        setContact(dataTicket.contact)
+        setStatus(dataTicket.status)
+    }
+    
+    if (getId == undefined){
+        console.log("no id")
+    }else {
+        useEffect(() => {
+            getTicketId()
+        }, [id])
+    }
+    // console.log("id", getId);    
+
 
 
   return (
@@ -32,7 +57,7 @@ export default function FromUpdate() {
             </div>
             <div className="mb-1">
                 <label className="form-label">Id</label>
-                <input type="text" className="form-control"  
+                <input type="text" className="form-control" required value={id}
                 onChange={ (event) => {
                     setId(event.target.value)
                 }}
@@ -40,7 +65,7 @@ export default function FromUpdate() {
             </div>
             <div className="mb-1">
                 <label className="form-label">Title</label>
-                <input type="text" className="form-control" aria-describedby="emailHelp" 
+                <input type="text" className="form-control" aria-describedby="emailHelp" required value={title} 
                 onChange={ (event) => {
                     setTitle(event.target.value)
                 }} 
@@ -48,15 +73,15 @@ export default function FromUpdate() {
             </div>
             <div className="mb-1">
                 <label className="form-label">Description</label>
-                <input type="text" className="form-control" 
+                <input type="text" className="form-control" required value={des}
                 onChange={ (event) => {
                     setDes(event.target.value)
                 }} 
                 />
             </div>
             <div className="mb-3">
-                <label className="form-label">Contact</label>
-                <input type="text" className="form-control" 
+                <label className="form-label">Contact</label> 
+                <input type="text" className="form-control" required value={contact}
                 onChange={ (event) => {
                     setContact(event.target.value) 
                 }}
@@ -66,7 +91,7 @@ export default function FromUpdate() {
                 {/* <label for="exampleInputPassword1" className="form-label">asdfsdf</label>
                 <input type="text" className="form-control" id="exampleInputPassword1" /> */}
 
-                <select id="cars" name="cars" onChange={ (event) => {
+                <select id="cars" name="cars" value={status} onChange={ (event) => { 
                     setStatus(event.target.value)
                 }}>
                 <option value="pending">Pending</option>
@@ -77,7 +102,7 @@ export default function FromUpdate() {
 
             </div>
             <br />
-            <button type="submit" className="btn btn-primary" onClick={updateTicket}>Update</button>
+            <button type="button" className="btn btn-primary" onClick={updateTicket}>Update</button>
             </form>
         </>
   )
