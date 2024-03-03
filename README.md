@@ -18,6 +18,7 @@ install dependency
     cd server
     npm i
 ```
+run server sql before use this command
 run server
 ```
     cd client
