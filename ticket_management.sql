@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2024 at 07:44 PM
+-- Generation Time: Mar 03, 2024 at 01:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,13 +42,14 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`id`, `title`, `description`, `contact`, `status`, `create_at`, `update_at`) VALUES
-(1, 'Bus', '111 to 222', 'lucky@gmail.com', 'accepted', '2024-02-28 14:33:35', '2024-03-01 17:46:41'),
-(2, 'train', 'Bangkok to Nakonpathom', 'sutsaenya_s@silpakorn.edu', 'pending', '2024-02-28 15:26:42', '2024-02-28 15:26:42'),
+(1, 'Bus Train', '111 to 222', 'lucky@gmail.com', 'accepted', '2024-02-28 14:33:35', '2024-03-03 10:52:07'),
+(2, 'train', 'Bangkok to Nakonpathom', 'sutsaenya_s@silpakorn.edu', 'accepted', '2024-02-28 15:26:42', '2024-03-03 10:35:30'),
 (3, 'bus', 'Bangkok to Chagmai', 'sutsaenya_s222@silpakorn.edu', 'pending', '2024-02-28 19:29:58', '2024-02-28 19:29:58'),
 (4, 'Train', 'Chonburi to Bangkok', '082233221', 'pending', '2024-03-01 16:23:30', '2024-03-01 16:23:30'),
-(5, 'Ship', 'Atlantic to Mediterianian', 'xxxx@gmail.com', 'pending', '2024-03-01 16:36:46', '2024-03-01 16:36:46'),
+(5, 'Ship', 'Atlantic to Mediterianian', 'xxxxzzzz@gmail.com', 'pending', '2024-03-01 16:36:46', '2024-03-03 10:41:26'),
 (6, 'Train', 'prachuab to bangkok', '08111111111', 'resolved', '2024-03-02 14:46:04', '2024-03-02 14:46:58'),
-(7, 'Bus', '112 to 118', '9807102341', 'rejected', '2024-03-02 14:53:58', '2024-03-02 14:55:35');
+(7, 'Bus', '112 to 118', '098789222', 'rejected', '2024-03-02 14:53:58', '2024-03-03 10:39:10'),
+(8, 'Ship', 'xx11 to zz22', '1234ss@gmail.com', 'pending', '2024-03-03 10:36:43', '2024-03-03 10:36:43');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +69,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
