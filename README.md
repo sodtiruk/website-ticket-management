@@ -19,12 +19,16 @@ install dependency
     npm i
 ```
 run server sql before use this command
+MYSQL PORT 3306
+
 run server
+SERVER PORT 3000
 ```
     cd client
     npm run dev
 ```
 run client
+CLIENT PORT 8080
 ```
     cd server
     npm run dev
