@@ -18,17 +18,17 @@ install dependency
     cd server
     npm i
 ```
-run server sql before use this command
-MYSQL PORT 3306
+run server sql before use this command <br />
+MYSQL PORT 3306 <br />
 
-run server
-SERVER PORT 3000
+run server <br />
+SERVER PORT 3000 <br />
 ```
     cd client
     npm run dev
 ```
-run client
-CLIENT PORT 8080
+run client <br />
+CLIENT PORT 8080 <br />
 ```
     cd server
     npm run dev
